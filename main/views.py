@@ -1,7 +1,5 @@
 import logging
 import sys
-from lib2to3.fixes.fix_input import context
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http import Http404
