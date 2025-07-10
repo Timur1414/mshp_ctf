@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h4 class="text-center">Можете посчитать <strong>любое</strong> математическое выражение.</h4>
+    <p>Если нужно использовать какую-то сложную функцию, напрмер, синус, то пишите её название, как в библиотеке
+        math</p>
+
+    <form class="form-inline" method="POST">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+            <div class="form-group mx-sm-2 my-2">
+                <label>{{ field.label }}</label>
+            </div>
+            <div class="form-group mx-sm-2">
+                {{ field }}
+            </div>
+        {% endfor %}
+        <div class="form-group mx-sm-2 mt-2">
+            <button type="submit" class="btn btn-primary">Посчитать</button>
+        </div>
+    </form>
+    <div class="card-body">
+        {% if result %}
+            <h4>Результат</h4>
+            {{ result|safe }}
+        {% endif %}
+    </div>
+
+
+{% endblock %}

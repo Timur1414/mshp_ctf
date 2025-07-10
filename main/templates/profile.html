@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1 class="text-center">Привет, {{ user.username }}!</h1>
+    {% if flag %}
+        <p>{{ flag }}</p>
+    {% endif %}
+{% endblock %}
