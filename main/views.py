@@ -89,7 +89,8 @@ class NotesPage(LoginRequiredMixin, TemplateView):
         if form.is_valid():
             text = form.data['text']
             if text:
-                context['notes'] = Note.find_by_text(text)
+                context['notes'] = Note.sql_find_by_text(text)
+                # context['notes'] = Note.find_by_text(text)
             else:
                 context['notes'] = Note.get_open_notes()
         return render(request, self.template_name, context)
@@ -124,6 +125,23 @@ class CalcPage(TemplateView):
                 context['result'] = eval(expression)
             except ValueError:
                 context['result'] = 'Ошибка во время подсчёта...'
+        return render(request, self.template_name, context)
+
+
+class SecretPage(TemplateView):
+    template_name = 'secret.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Секретная страница'
+        return context
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        if request.headers.get('algorithm') == 'PBKDF2':
+            context['text'] = 'Правильно! Флаг: mshp{supp3r_dup3r_secr3t}'
+        else:
+            context['text'] = 'Какой алгоритм хеширования использует django? В ответе только одно слово.'
         return render(request, self.template_name, context)
 
 

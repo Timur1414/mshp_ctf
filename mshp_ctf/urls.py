@@ -21,13 +21,14 @@ from django.contrib.auth import views as auth_views
 from main import views
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', views.IndexPage.as_view(), name='index'),
     path('calc/', views.CalcPage.as_view(), name='calc'),
     path('profile/<int:id>/', views.ProfilePage.as_view(), name='profile'),
     path('create_note/', views.CreateNotePage.as_view(), name='create_note'),
     path('notes/', views.NotesPage.as_view(), name='notes'),
     path('note/<int:id>/', views.NotePage.as_view(), name='note'),
+    path('7b2768656164657273273a20276f6e277d/', views.SecretPage.as_view(), name='secret'),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('registration/', include('django_registration.backends.one_step.urls')),
