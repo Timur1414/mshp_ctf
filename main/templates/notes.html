@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Все доступные заметки</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input class="btn btn-success my-3" type="submit" value="Найти">
+    </form>
+
+    {% for item in notes %}
+        {% include "note_card.html" %}
+    {% empty %}
+        <p>Нет заметок. Вы можете создать свою в профиле.</p>
+    {% endfor %}
+{% endblock %}

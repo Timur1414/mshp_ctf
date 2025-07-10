@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1 class="text-center">{{ title }}</h1>
+    <p class="text-end mx-4"><a href="{% url 'profile' id=author.id %}">{{ author }}</a></p>
+    <p>{{ text }}</p>
+    {% if is_open %}
+        <p class="text-success">Открытая заметка</p>
+    {% else %}
+        <p class="text-danger">Закрытая заметка</p>
+    {% endif %}
+{% endblock %}

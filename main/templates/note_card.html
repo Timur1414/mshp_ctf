@@ -1,0 +1,11 @@
+<a href="{% url 'note' id=item.id %}" class="text-decoration-none text-black">
+    <div class="mt-3 p-2 border border-3
+                {% if item.is_open %}
+                    border-success
+                {% else %}
+                    border-danger
+                {% endif %}">
+        <p>[{{ item.author }} -- {{ item.title }}]</p>
+        <p>{{ item.text }}</p>
+    </div>
+</a>
