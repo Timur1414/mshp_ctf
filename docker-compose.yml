@@ -16,7 +16,7 @@ services:
 
   web:
     build: .
-    command: sh -c "run.sh"
+    command: sh -c "/code/run.sh"
     restart: always
     env_file:
       - .env
