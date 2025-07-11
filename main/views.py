@@ -55,8 +55,10 @@ class ProfilePage(LoginRequiredMixin, DetailView):
         context['form'] = form
         if self.object == self.request.user:
             context['notes'] = Note.get_all_notes_of_user(self.object)
+            context['is_user_author'] = True
         else:
             context['notes'] = Note.get_open_notes_of_user(self.object)
+            context['is_user_author'] = False
         return context
 
 

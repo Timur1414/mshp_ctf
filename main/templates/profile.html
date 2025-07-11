@@ -7,11 +7,13 @@
         <p class="text-secondary">{{ flag }}</p>
     {% endif %}
     <br>
+    {% if is_user_author %}
     <form method="POST" action="{% url 'create_note' %}">
         {% csrf_token %}
         {{ form }}
         <input class="btn btn-success" type="submit" value="Создать">
     </form>
+    {% endif %}
     <div>
         <h2>Ваши заметки:</h2>
         {% for item in notes %}
