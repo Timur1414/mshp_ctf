@@ -9,5 +9,6 @@ RUN pip install -r requirements.txt
 COPY main ./main
 COPY mshp_ctf ./mshp_ctf
 COPY manage.py .
+COPY run.sh .
 
 EXPOSE 8000
