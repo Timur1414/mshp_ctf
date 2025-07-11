@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+
+  server:
+    image: nginx:alpine
+    restart: always
+    depends_on:
+      - web
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./public:/mshp_ctf/public
+
+  web:
+    build: .
+    command: sh -c "run.sh"
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./public:/mshp_ctf/public
