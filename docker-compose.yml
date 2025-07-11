@@ -18,7 +18,5 @@ services:
     build: .
     command: sh -c "/code/run.sh"
     restart: always
-    env_file:
-      - .env
     volumes:
       - ./public:/mshp_ctf/public
